@@ -2,7 +2,7 @@ name: CelestCombat
 version: '${version}'
 main: dev.nighter.celestCombat.CelestCombat
 api-version: '1.21'
-authors: [ Nighter ]
+authors: [ RaviRai ]
 description: A simple combat logging plugin
 folia-supported: true
 
