@@ -1,255 +1,253 @@
-prefix: "&8[&#4A90E2CelestCombat&8] "
+language_version: 1.0.9
 
-# ------------------------------------------------------
-#                  Combat messages
-# ------------------------------------------------------
+prefix: '&e&lCOMBAT &8➠ '
+
 combat_countdown:
-  action_bar: "&#4A90E2Combat: &#FFFFFF%time%s"
+  action_bar: '&#FF9000Combat: &#00FFF6%time%s'
+
+third_party_damage_blocked:
+  enabled: true
+  message: '&#FF7300&l%victim% &#FF7300is already fighting with &#FFFFFF%opponent%&#FF7300! Third party interference is not allowed. &#FF9000[&#FFFFFF%time%s&#FF9000]'
+  title: ''
+  subtitle: ''
+  action_bar: '&#FF7300Third party damage blocked!'
+  sound: entity.villager.no
+
+combat_locked_cannot_attack_others:
+  enabled: true
+  message: '&#FF7300You are currently in combat with &#FFFFFF%opponent%&#FF7300! You cannot attack other players until your combat ends. &#FF9000[&#FFFFFF%time%s&#FF9000]'
+  title: '&#FF7300Combat Locked'
+  subtitle: '&#CCCCCCFinish your fight with &#FFFFFF%opponent%'
+  action_bar: '&#FF7300Combat locked - cannot attack others!'
+  sound: entity.villager.no
 
 player_died_combat_logout:
-  message: "&cYou previously logged out during combat and have been penalized."
-  title: "&#E94E77COMBAT PENALTY"
-  subtitle: "&#BF3A49Don't log out during fights!"
+  message: '&#FF7300You logged out during combat and have been penalized.'
+  title: '&#FF9000C&#FF8600O&#FF7D00M&#FF7300B&#CCB900A&#66FFD8T &#00FFF6V&#00F2F6I&#00E5F6O&#00D9F6L&#00CCF6A&#00BFF6T&#00B2F6I&#00A5F6O&#0098F6N'
+  subtitle: '&#FF7300Do not log out during fights!'
   sound: entity.wither.hurt
 
 command_blocked_in_combat:
-  message: "&cYou cannot use /%command% while in combat! &#F39C12Wait &#FFFFFF%time%s &#F39C12until combat ends."
+  message: '&#FF7300You cannot use &f/%command% &#FF7300during combat. &#FF9000Wait &f%time%s &#FF7300to exit combat.'
   sound: block.anvil.land
 
 combat_expired:
   enabled: true
-  message: "&#4CAF50You are no longer in combat."
+  message: '&#00FFF6Combat expired. You are safe now.'
   sound: entity.experience_orb.pickup
 
 combat_fly_disabled:
-  message: "&cYou cannot fly while in combat!"
+  message: '&#FF7300You cannot fly while in combat!'
   sound: block.note_block.pling
 
 item_use_blocked_in_combat:
-  message: "&cYou cannot use %item% while in combat!"
+  message: '&#FF7300Using &f%item% &cwhile in combat is not allowed.'
   sound: block.note_block.pling
 
-# ------------------------------------------------------
-#                Ender pearl messages
-# ------------------------------------------------------
 enderpearl_cooldown:
-  action_bar: "&#E94E77Ender Pearl is on cooldown!"
+  action_bar: '&#FF7300Ender Pearl is on cooldown!'
   sound: block.note_block.pling
 
 pearl_only_countdown:
-  action_bar: "&#E94E77Ender Pearl cooldown: &#FFFFFF%time%s"
+  action_bar: '&#FF7300Pearl Cooldown: &#00FFF6%time%s'
 
 combat_pearl_countdown:
-  action_bar: "&#4A90E2Combat: &#FFFFFF%combat_time%s &#8B8B8B| &#E94E77Pearl: &#FFFFFF%pearl_time%s"
+  action_bar: '&#FF9000Combat: &#FFFFFF%combat_time%s &#FF7300| &#00FFF6Pearl: &#FFFFFF%pearl_time%s'
 
-# ------------------------------------------------------
-#                Trident messages
-# ------------------------------------------------------
 trident_banned:
-  message: "&cTridents are banned in this world!"
+  message: '&#FF7300Tridents are disabled in this world.'
   sound: block.note_block.pling
 
 trident_cooldown:
-  action_bar: "&#4FC3F7Trident is on cooldown!"
+  action_bar: '&#00FFF6Trident is on cooldown!'
   sound: block.note_block.pling
 
 trident_only_countdown:
-  action_bar: "&#4FC3F7Trident cooldown: &#FFFFFF%time%s"
+  action_bar: '&#00FFF6Trident Cooldown: &#FFFFFF%time%s'
 
-# ------------------------------------------------------
-#              Combined countdown messages
-# ------------------------------------------------------
 combat_pearl_trident_countdown:
-  action_bar: "&#4A90E2Combat: &#FFFFFF%combat_time%s &#8B8B8B| &#E94E77Pearl: &#FFFFFF%pearl_time%s &#8B8B8B| &#4FC3F7Trident: &#FFFFFF%trident_time%s"
+  action_bar: '&#FF9000Combat: &#FFFFFF%combat_time%s &#FF7300| &#00FFF6Pearl: &#FFFFFF%pearl_time%s &#FF7300| &#00FFF6Trident: &#FFFFFF%trident_time%s'
 
 combat_trident_countdown:
-  action_bar: "&#4A90E2Combat: &#FFFFFF%combat_time%s &#8B8B8B| &#4FC3F7Trident: &#FFFFFF%trident_time%s"
+  action_bar: '&#FF9000Combat: &#FFFFFF%combat_time%s &#FF7300| &#00FFF6Trident: &#FFFFFF%trident_time%s'
 
 pearl_trident_countdown:
-  action_bar: "&#E94E77Pearl: &#FFFFFF%pearl_time%s &#8B8B8B| &#4FC3F7Trident: &#FFFFFF%trident_time%s"
+  action_bar: '&#FF7300Pearl: &#FFFFFF%pearl_time%s &#FF7300| &#00FFF6Trident: &#FFFFFF%trident_time%s'
 
-# ------------------------------------------------------
-#                Kill reward messages
-# ------------------------------------------------------
 kill_reward_received:
-  action_bar: "&#8A2BE2+★10 &#FFFFFFfor killing %victim%"
+  action_bar: '&#FF9000+★10 &#FFFFFFfor killing %victim%'
   sound: entity.player.levelup
 
-# ------------------------------------------------------
-#              Newbie protection messages
-# ------------------------------------------------------
 newbie_protection_granted:
-  message: "&#4CAF50Granted newbie protection for &#FFFFFF%duration%&#4CAF50! You are safe from PvP."
-  title: "&#4CAF50PVP PROTECTION GRANTED"
-  subtitle: "&#66BB6AYou are now safe from PvP!"
+  message: '&#00FFF6Newbie protection granted for &f%duration%&#00FFF6. You are safe from PvP.'
+  title: '&#00FFF6PvP Protection Enabled'
+  subtitle: '&#00FFF6You are now safe from PvP.'
   sound: entity.player.levelup
 
 newbie_protection_attack_blocked:
-  message: "&#E94E77Cannot attack &#FFFFFF%player% &#E94E77because they have newbie protection!"
+  message: '&#FF7300You cannot attack &f%player% &#FF7300as they are under newbie protection.'
   sound: entity.villager.no
 
 newbie_protection_removed_attack:
-  title: "&#FF9800PVP PROTECTION REMOVED"
-  subtitle: "&#E65100You attacked someone - PvP protection lost!"
+  title: '&#FF9000Protection Revoked'
+  subtitle: '&#FF7300You attacked someone - protection removed!'
   sound: entity.wither.hurt
 
 newbie_protection_actionbar:
-  action_bar: "&#4CAF50PvP Protection: &#FFFFFF%time%"
+  action_bar: '&#00FFF6PvP Protection: &#FFFFFF%time%'
 
-# ------------------------------------------------------
-# Safe zone messages for third-party protection plugins
-# ------------------------------------------------------
 combat_no_safezone_entry:
-  message: "&cCan't enter safe zone in combat! &#F39C12Please wait &#FFFFFF%time% &#F39C12seconds."
+  message: '&#FF7300You cannot enter a safe zone during combat. &#FF9000Wait &#FFFFFF%time%s.'
   sound: block.note_block.pling
 
 combat_no_pearl_safezone:
-  message: "&cCan't pearl into safe zone! &#F39C12Please wait &#FFFFFF%time% &#F39C12seconds."
+  message: '&#FF7300You cannot pearl into a safe zone. &#FF9000Wait &#FFFFFF%time%s.'
   sound: block.note_block.pling
 
 killed_trying_to_enter_safezone_combat:
-  message: "&&cYou were killed while trying to enter a safe zone in combat."
-  title: "&#E94E77COMBAT PENALTY"
-  subtitle: "&#BF3A49Don't go into safe zones during fights!"
+  message: '&#FF7300You were killed while trying to enter a safe zone during combat.'
+  title: '&#FF9000Combat Violation'
+  subtitle: '&#FF7300Avoid entering safe zones during combat!'
   sound: entity.wither.hurt
 
-# ------------------------------------------------------
-# Claim protection messages for GriefPrevention
-# ------------------------------------------------------
 combat_no_claim_entry:
-  message: "&cCan't enter protected claim in combat! &#F39C12Please wait &#FFFFFF%time% &#F39C12seconds."
+  message: '&#FF7300You cannot enter a protected claim during combat. &#FF9000Wait &#FFFFFF%time%s.'
   sound: block.note_block.pling
 
 combat_no_pearl_claim:
-  message: "&cCan't pearl into protected claim! &#F39C12Please wait &#FFFFFF%time% &#F39C12seconds."
+  message: '&#FF7300You cannot pearl into a protected claim. &#FF9000Wait &#FFFFFF%time%s.'
   sound: block.note_block.pling
 
 combat_killed_no_safe_location:
-  message: "&cYou were killed while trying to enter a claim in combat."
-  title: "&#E94E77COMBAT PENALTY"
-  subtitle: "&#BF3A49Don't go into claims during fights!"
+  message: '&#FF7300You were killed trying to enter a claim during combat.'
+  title: '&#FF9000Combat Violation'
+  subtitle: '&#FF7300Avoid entering claims during PvP!'
   sound: entity.wither.hurt
 
-# ------------------------------------------------------
-#                Plugin command messages
-# ------------------------------------------------------
 no_permission:
-  message: "&cYou don't have permission to use this command."
+  message: '&#FF7300You do not have permission to use this command.'
   sound: entity.villager.no
 
 help_message:
-  message: |
-    &8&m
-    &8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    &8                          &7&#F5F5DC&lCOMMAND LIST
-    &8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    &8» &#4A90E2/cc reload &#F5F5DC- Reload the plugin configuration
-    &8» &#4A90E2/cc tag &#F5F5DC- Tag players in combat
-    &8» &#4A90E2/cc removeTag player <player> &#F5F5DC- Remove a player from combat
-    &8» &#4A90E2/cc removeTag world <world> &#F5F5DC- Remove all players from combat in a world
-    &8» &#4A90E2/cc removeTag all &#F5F5DC- Remove all players from combat server-wide
-    &8» &#4A90E2/cc killReward check <player> [target] &#F5F5DC- Check kill reward cooldown
-    &8» &#4A90E2/cc killReward clear <player> &#F5F5DC- Clear kill reward cooldowns for a player
-    &8» &#4A90E2/cc killReward clearAll &#F5F5DC- Clear all kill reward cooldowns server-wide
-    &8» &#4A90E2/cc newbieProtection give <player> &#F5F5DC- Grant newbie protection to a player
-    &8» &#4A90E2/cc newbieProtection remove <player> &#F5F5DC- Remove newbie protection from a player
-    &8» &#4A90E2/cc newbieProtection check <player> &#F5F5DC- Check newbie protection status
+  message: >
     &8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Reload command messages
+    &8                   &#FF9000&lC&#FF8600&lO&#FF7C00&lM&#FF7300&lM&#CCB900&lA&#66FFD8&lN&#00FFF6&lD &#00FFF6&lL&#00FFF6&lI&#00FFF6&lS&#00FFF6&lT
+
+    &8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    &8» &#FF9000/cc reload &#F5F5DC- Reload plugin configuration
+
+    &8» &#FF9000/cc tag &#F5F5DC- Tag players in combat manually
+
+    &8» &#FF9000/cc removeTag player <player> &#F5F5DC- Remove combat from a player
+
+    &8» &#FF9000/cc removeTag world <world> &#F5F5DC- Remove all tags in a world
+
+    &8» &#FF9000/cc removeTag all &#F5F5DC- Remove all tags globally
+
+    &8» &#FF9000/cc killReward check <player> [target] &#F5F5DC- Check kill reward cooldown
+
+    &8» &#FF9000/cc killReward clear <player> &#F5F5DC- Clear a player's reward cooldown
+
+    &8» &#FF9000/cc killReward clearAll &#F5F5DC- Clear all reward cooldowns
+
+    &8» &#FF9000/cc newbieProtection give <player> &#F5F5DC- Grant newbie protection
+
+    &8» &#FF9000/cc newbieProtection remove <player> &#F5F5DC- Remove protection from a player
+
+    &8» &#FF9000/cc newbieProtection check <player> &#F5F5DC- View protection duration
+
+    &8&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 config_reloaded:
-  message: "&#4CAF50CelestCombat configuration successfully reloaded."
+  message: '&#4CAF50CelestCombat configuration successfully reloaded.'
   sound: entity.player.levelup
 
-# Combat tag command messages
 combat_tag_success:
-  message: "&#4CAF50Successfully tagged %player1% and %player2% in combat."
+  message: '&#4CAF50Successfully tagged %player1% and %player2% in combat.'
   sound: entity.experience_orb.pickup
 
 combat_tag_single_success:
-  message: "&#4CAF50Successfully tagged %player% in combat."
+  message: '&#4CAF50Successfully tagged %player% in combat.'
   sound: entity.experience_orb.pickup
 
 player_not_found:
-  message: "&cPlayer %player% not found."
+  message: '&cPlayer %player% not found.'
   sound: entity.villager.no
 
-# Combat removal command messages
 player_not_in_combat:
-  message: "&c%player% is not currently in combat!"
+  message: '&c%player% is not currently in combat!'
   sound: entity.villager.no
 
 combat_remove_success:
-  message: "&#4CAF50Successfully removed %player% from combat!"
+  message: '&#4CAF50Successfully removed %player% from combat!'
   sound: entity.experience_orb.pickup
 
 world_not_found:
-  message: "&cWorld '%world%' not found!"
+  message: '&cWorld %world% not found!'
   sound: entity.villager.no
 
 no_players_in_combat_world:
-  message: "&cNo players are in combat in world '%world%'!"
+  message: '&cNo players are in combat in world %world%!'
   sound: entity.villager.no
 
 combat_remove_world_success:
-  message: "&#4CAF50Successfully removed %count% players from combat in world '%world%'!"
+  message: '&#4CAF50Successfully removed %count% players from combat in world %world%!'
   sound: entity.experience_orb.pickup
 
 no_players_in_combat_server:
-  message: "&cNo players are currently in combat on the server!"
+  message: '&cNo players are currently in combat on the server!'
   sound: entity.villager.no
 
 combat_remove_all_success:
-  message: "&#4CAF50Successfully removed %count% players from combat server-wide!"
+  message: '&#4CAF50Successfully removed %count% players from combat server-wide!'
   sound: entity.experience_orb.pickup
 
-# Kill cooldown command messages
 clear_cooldown_success:
-  message: "&#4CAF50Successfully cleared all kill reward cooldowns for %player%!"
+  message: '&#4CAF50Successfully cleared all kill reward cooldowns for %player%!'
   sound: entity.experience_orb.pickup
 
 clear_all_cooldowns_success:
-  message: "&#4CAF50Successfully cleared all %count% kill reward cooldowns!"
+  message: '&#4CAF50Successfully cleared all %count% kill reward cooldowns!'
   sound: entity.experience_orb.pickup
 
 no_cooldowns_to_clear:
-  message: "&cNo kill reward cooldowns to clear!"
+  message: '&cNo kill reward cooldowns to clear!'
   sound: entity.villager.no
 
-# Kill cooldown check messages
 no_kill_cooldown:
-  message: "&#4CAF50%player% has no active kill reward cooldown"
+  message: '&#4CAF50%player% has no active kill reward cooldown'
   sound: entity.experience_orb.pickup
 
 no_kill_cooldown_target:
-  message: "&#4CAF50%player% has no active kill reward cooldown for %target%"
+  message: '&#4CAF50%player% has no active kill reward cooldown for %target%'
   sound: entity.experience_orb.pickup
 
 kill_cooldown_remaining:
-  message: "&e%player% has %time% remaining kill reward cooldown"
+  message: '&e%player% has %time% remaining kill reward cooldown'
   sound: block.note_block.pling
 
 kill_cooldown_remaining_target:
-  message: "&e%player% has %time% remaining kill reward cooldown for %target%"
+  message: '&e%player% has %time% remaining kill reward cooldown for %target%'
   sound: block.note_block.pling
 
-# Newbie protection command messages
 newbie_protection_give_success:
-  message: "&#4CAF50Successfully granted newbie protection to %player%!"
+  message: '&#4CAF50Successfully granted newbie protection to %player%!'
   sound: entity.experience_orb.pickup
 
 newbie_protection_remove_success:
-  message: "&#4CAF50Successfully removed newbie protection from %player%!"
+  message: '&#4CAF50Successfully removed newbie protection from %player%!'
   sound: entity.experience_orb.pickup
 
 newbie_protection_already_has:
-  message: "&c%player% already has newbie protection!"
+  message: '&c%player% already has newbie protection!'
   sound: entity.villager.no
 
 newbie_protection_not_protected:
-  message: "&c%player% does not have newbie protection!"
+  message: '&c%player% does not have newbie protection!'
   sound: entity.villager.no
 
 newbie_protection_check_protected:
-  message: "&#4CAF50%player% has newbie protection with %time% remaining"
+  message: '&#4CAF50%player% has newbie protection with %time% remaining'
   sound: block.note_block.pling

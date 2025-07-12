@@ -28,6 +28,9 @@ public class CombatManager {
     private long combatDurationTicks;
     private long combatDurationSeconds;
     private boolean disableFlightInCombat;
+    private boolean thirdPartyProtectionEnabled;
+    private List<String> thirdPartyBlacklistedWorlds;
+
     private long enderPearlCooldownTicks;
     private long enderPearlCooldownSeconds;
     private Map<String, Boolean> worldEnderPearlSettings = new ConcurrentHashMap<>();
@@ -64,6 +67,14 @@ public class CombatManager {
         this.combatDurationSeconds = combatDurationTicks / 20;
         this.disableFlightInCombat = plugin.getConfig().getBoolean("combat.disable_flight", true);
 
+        if (plugin.getConfig().isConfigurationSection("combat.third_party_protection")) {
+            this.thirdPartyProtectionEnabled = plugin.getConfig().getBoolean("combat.third_party_protection.enabled", true);
+            this.thirdPartyBlacklistedWorlds = plugin.getConfig().getStringList("combat.third_party_protection.blacklisted_worlds");
+        } else {
+            this.thirdPartyProtectionEnabled = plugin.getConfig().getBoolean("combat.third_party_protection", true);
+            this.thirdPartyBlacklistedWorlds = List.of();
+        }
+
         this.enderPearlCooldownTicks = plugin.getTimeFromConfig("enderpearl_cooldown.duration", "10s");
         this.enderPearlCooldownSeconds = enderPearlCooldownTicks / 20;
         this.enderPearlEnabled = plugin.getConfig().getBoolean("enderpearl_cooldown.enabled", true);
@@ -88,6 +99,14 @@ public class CombatManager {
 
     public boolean isWorldBlacklisted(Player player) {
         return player != null && isWorldBlacklisted(player.getWorld().getName());
+    }
+
+    public boolean isThirdPartyProtectionEnabledInWorld(String worldName) {
+        return thirdPartyProtectionEnabled && !thirdPartyBlacklistedWorlds.contains(worldName);
+    }
+
+    public boolean isThirdPartyProtectionEnabledInWorld(Player player) {
+        return player != null && isThirdPartyProtectionEnabledInWorld(player.getWorld().getName());
     }
 
     private void loadWorldTridentSettings() {
@@ -122,6 +141,66 @@ public class CombatManager {
                 worldEnderPearlSettings.put(worldName, enabled);
             }
         }
+    }
+
+    public boolean isThirdPartyProtectionEnabled() {
+        return thirdPartyProtectionEnabled;
+    }
+
+    public boolean isVictimProtectedFromThirdParty(Player victim, Player attacker) {
+        if (!thirdPartyProtectionEnabled || victim == null || attacker == null) {
+            return false;
+        }
+
+        if (!isThirdPartyProtectionEnabledInWorld(victim)) {
+            return false;
+        }
+
+        if (!isInCombat(victim)) {
+            return false;
+        }
+
+        Player victimOpponent = getCombatOpponent(victim);
+        if (victimOpponent == null) {
+            return false;
+        }
+
+        return !attacker.getUniqueId().equals(victimOpponent.getUniqueId());
+    }
+
+    public boolean isAttackerInCombatWithOther(Player attacker, Player victim) {
+        if (!thirdPartyProtectionEnabled || attacker == null || victim == null) {
+            return false;
+        }
+
+        if (!isThirdPartyProtectionEnabledInWorld(attacker)) {
+            return false;
+        }
+
+        if (!isInCombat(attacker)) {
+            return false;
+        }
+
+        Player attackerOpponent = getCombatOpponent(attacker);
+        if (attackerOpponent == null) {
+            return false;
+        }
+
+        return !victim.getUniqueId().equals(attackerOpponent.getUniqueId());
+    }
+
+    public boolean arePlayersInMutualCombat(Player player1, Player player2) {
+        if (player1 == null || player2 == null) {
+            return false;
+        }
+
+        UUID player1UUID = player1.getUniqueId();
+        UUID player2UUID = player2.getUniqueId();
+
+        UUID player1Opponent = combatOpponents.get(player1UUID);
+        UUID player2Opponent = combatOpponents.get(player2UUID);
+
+        return player2UUID.equals(player1Opponent) && player1UUID.equals(player2Opponent);
     }
 
     private void startGlobalCountdownTimer() {

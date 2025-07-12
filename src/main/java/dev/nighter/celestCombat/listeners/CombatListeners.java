@@ -109,6 +109,37 @@ public class CombatListeners implements Listener {
         }
 
         if (attacker != null && victim != null && !attacker.equals(victim)) {
+            if (combatManager.isVictimProtectedFromThirdParty(victim, attacker)) {
+                event.setCancelled(true);
+
+                Player victimOpponent = combatManager.getCombatOpponent(victim);
+                Map<String, String> placeholders = new HashMap<>();
+                placeholders.put("attacker", attacker.getName());
+                placeholders.put("victim", victim.getName());
+                placeholders.put("opponent", victimOpponent != null ? victimOpponent.getName() : "Unknown");
+                placeholders.put("time", String.valueOf(combatManager.getRemainingCombatTime(victim)));
+
+                plugin.getMessageService().sendMessage(attacker, "third_party_damage_blocked", placeholders);
+                plugin.debug("Blocked third party damage from " + attacker.getName() + " to " + victim.getName());
+                return;
+            }
+
+            if (combatManager.isAttackerInCombatWithOther(attacker, victim)) {
+                event.setCancelled(true);
+
+                Player attackerOpponent = combatManager.getCombatOpponent(attacker);
+                Map<String, String> placeholders = new HashMap<>();
+                placeholders.put("attacker", attacker.getName());
+                placeholders.put("victim", victim.getName());
+                placeholders.put("opponent", attackerOpponent != null ? attackerOpponent.getName() : "Unknown");
+                placeholders.put("time", String.valueOf(combatManager.getRemainingCombatTime(attacker)));
+
+                plugin.getMessageService().sendMessage(attacker, "combat_locked_cannot_attack_others", placeholders);
+                plugin.debug("Blocked " + attacker.getName() + " from attacking " + victim.getName() + " while in combat with " +
+                    (attackerOpponent != null ? attackerOpponent.getName() : "someone"));
+                return;
+            }
+
             lastDamageSource.put(victim.getUniqueId(), attacker.getUniqueId());
             lastDamageTime.put(victim.getUniqueId(), System.currentTimeMillis());
 
@@ -130,22 +161,26 @@ public class CombatListeners implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
 
         newbieProtectionManager.handlePlayerQuit(player);
+        messageService.cleanupPlayerData(playerUUID);
 
         if (combatManager.isInCombat(player)) {
-            playerLoggedOutInCombat.put(player.getUniqueId(), true);
+            playerLoggedOutInCombat.put(playerUUID, true);
             combatManager.punishCombatLogout(player);
         } else {
-            playerLoggedOutInCombat.put(player.getUniqueId(), false);
+            playerLoggedOutInCombat.put(playerUUID, false);
         }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerKick(PlayerKickEvent event) {
         Player player = event.getPlayer();
+        UUID playerUUID = player.getUniqueId();
 
         newbieProtectionManager.handlePlayerQuit(player);
+        messageService.cleanupPlayerData(playerUUID);
 
         if (combatManager.isInCombat(player)) {
             if (plugin.getConfig().getBoolean("combat.exempt_admin_kick", true)) {
@@ -157,7 +192,7 @@ public class CombatListeners implements Listener {
                 }
             } else {
                 Player opponent = combatManager.getCombatOpponent(player);
-                playerLoggedOutInCombat.put(player.getUniqueId(), true);
+                playerLoggedOutInCombat.put(playerUUID, true);
 
                 combatManager.punishCombatLogout(player);
 

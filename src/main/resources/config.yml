@@ -33,6 +33,17 @@ combat:
     - "ah"
   exempt_admin_kick: true
   disable_flight: false
+  # Third party protection - prevents other players from interfering in 1v1 combat
+  # When two players are fighting each other, no one else can damage them
+  third_party_protection:
+    enabled: true
+    blacklisted_worlds:
+      - macepvp
+      - macepvp_2
+      - macepvp_3
+      - macepvp_4
+      - macepvp_5
+      - macepvp_6
   item_restrictions:
     enabled: false
     disabled_items:

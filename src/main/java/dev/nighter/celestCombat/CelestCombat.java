@@ -1,7 +1,6 @@
 package dev.nighter.celestCombat;
 
 import com.sk89q.worldguard.WorldGuard;
-import dev.nighter.celestCombat.bstats.Metrics;
 import dev.nighter.celestCombat.combat.CombatManager;
 import dev.nighter.celestCombat.combat.DeathAnimationManager;
 import dev.nighter.celestCombat.commands.CommandManager;
@@ -105,8 +104,6 @@ public final class CelestCombat extends JavaPlugin {
         commandManager = new CommandManager(this);
         commandManager.registerCommands();
 
-        setupBtatsMetrics();
-
         long loadTime = System.currentTimeMillis() - startTime;
         getLogger().info("CelestCombat has been enabled! (Loaded in " + loadTime + "ms)");
     }
@@ -181,12 +178,6 @@ public final class CelestCombat extends JavaPlugin {
         } catch (ClassNotFoundException | NoClassDefFoundError e) {
             return false;
         }
-    }
-
-    private void setupBtatsMetrics() {
-        Scheduler.runTask(() -> {
-            Metrics metrics = new Metrics(this, 25387);
-        });
     }
 
     public long getTimeFromConfig(String path, String defaultValue) {
